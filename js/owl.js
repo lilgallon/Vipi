@@ -1,7 +1,7 @@
 MAX_HEALTH = 5.0;
 MAX_ENERGY = 6.0;
 
-class Owl{
+class Owl extends Entity{
 
     /**
      * 
@@ -13,7 +13,7 @@ class Owl{
      * @param {float} energy from 0.0 to 6.0
      */
     constructor(x, y, w, h, health = this.MAX_HEALTH, energy = this.MAX_ENERGY){
-        this.hitbox = new Hitbox(x, y, w, h);
+        super(x, y, w, h);
         this.health = health;
         this.energy = energy;
     }
@@ -46,5 +46,9 @@ class Owl{
 
     damage(predator){
         this.updateHealth(predator.damages);
+    }
+
+    draw(){
+        // TODO
     }
 }

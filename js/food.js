@@ -1,4 +1,4 @@
-class Food{
+class Food extends Entity{
 
     /**
      * 
@@ -9,7 +9,11 @@ class Food{
      * @param {*} energy the energy that will be given to the owl if he eats it
      */
     constructor(x, y, w, h, energy){
-        this.hitbox = new Hitbox(x, y, w, h);
+        super(x, y, w, h);
         this.energy = energy;
+    }
+
+    draw(){
+        // TODO
     }
 }
