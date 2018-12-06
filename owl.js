@@ -1,9 +1,19 @@
-class Owl{
-    MAX_HEALTH = 5.0;
-    MAX_ENERGY = 10.0;
+MAX_HEALTH = 5.0;
+MAX_ENERGY = 6.0;
 
-    constructor(x, y, health = this.MAX_HEALTH, energy = this.MAX_ENERGY){
-        this.position = new Position(x, y);
+class Owl{
+
+    /**
+     * 
+     * @param {int} x position
+     * @param {int} y position 
+     * @param {int} w width
+     * @param {int} h height 
+     * @param {float} health from 0.0 to 5.0 
+     * @param {float} energy from 0.0 to 6.0
+     */
+    constructor(x, y, w, h, health = this.MAX_HEALTH, energy = this.MAX_ENERGY){
+        this.hitbox = new Hitbox(x, y, w, h);
         this.health = health;
         this.energy = energy;
     }
@@ -19,8 +29,8 @@ class Owl{
         }
     }
     
-    updateHealth(increment){
-        this.health += this.health;
+    updateHealth(decrement){
+        this.health -= this.health;
         if(this.health > this.MAX_HEALTH){
             console.warn("Health has been set to " + this.health + " whereas the max is set at " + this.MAX_HEALTH + ".");
             this.health = this.MAX_HEALTH;
@@ -29,16 +39,12 @@ class Owl{
             this.health = 0;
         }
     }
-    
-    get position(){
-        return this.position;
+
+    eat(food){
+        this.updateEnergy(food.energy);
     }
 
-    get health(){
-        return this.health;
-    }
-
-    get energy(){
-        return this.energy;
+    damage(predator){
+        this.updateHealth(predator.damages);
     }
 }
