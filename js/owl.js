@@ -1,5 +1,5 @@
-MAX_HEALTH = 5.0;
-MAX_ENERGY = 6.0;
+MAX_HEALTH = 2;
+MAX_ENERGY = 6;
 
 class Owl extends Entity{
 
@@ -9,8 +9,8 @@ class Owl extends Entity{
      * @param {int} y position 
      * @param {int} w width
      * @param {int} h height 
-     * @param {float} health from 0.0 to 5.0 
-     * @param {float} energy from 0.0 to 6.0
+     * @param {int} health from 0 to 2
+     * @param {int} energy from 0 to 6
      */
     constructor(x, y, w, h, health = this.MAX_HEALTH, energy = this.MAX_ENERGY){
         super(x, y, w, h);

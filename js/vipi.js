@@ -19,18 +19,31 @@ function execute(){
     var width = canvas.width;
     var height = canvas.height;
 
+    var owl = new Owl(5, 5, 50, 60, 2, 6);
     var entities = [];
-    entities.push(new Owl(5, 5, 50, 60, 5, 6));
+    entities.push(owl);
     entities.push(new Food(15, 50, 20, 20, 1));
     entities.push(new Predator(50, 30, 10, 10, 1));
-    // TODO: init all the stuff
 
     function update(){
         context.clearRect(0, 0, width, height)
        
+        // Entities
         for(var entity of entities){
             entity.draw(context);
         }
+
+        // HUD
+        var energy_hud = new Image();
+        energy_hud.src = "pictures/energy-" + owl.energy + ".png";
+        console.log(energy_hud.src);
+        context.drawImage(energy_hud, 10, 10);
+
+        var health_hud = new Image();
+        health_hud.src = "pictures/health-" + owl.health + ".png";
+        console.log(health_hud.src);
+        context.drawImage(health_hud, 100, 0);
+
     }
 
     requestAnimationFrame(update);
