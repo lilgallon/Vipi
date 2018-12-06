@@ -25,6 +25,7 @@ class Hitbox{
     }
 
     isOver(hitbox){
-        return false;
+        return (this.x < hitbox.x+hitbox.w && this.x+this.w > hitbox.x &&
+            this.y < hitbox.y+hitbox.h && this.y+this.h > hitbox.y ) ;
     }
 }
