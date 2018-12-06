@@ -48,7 +48,7 @@ class Owl extends Entity{
         this.updateHealth(predator.damages);
     }
 
-    draw(){
+    draw(context){
         // TODO
     }
 }

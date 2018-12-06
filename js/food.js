@@ -13,7 +13,7 @@ class Food extends Entity{
         this.energy = energy;
     }
 
-    draw(){
+    draw(context){
         // TODO
     }
 }

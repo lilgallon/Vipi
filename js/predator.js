@@ -13,7 +13,7 @@ class Predator extends Entity{
         this.damages = damages;
     }
 
-    draw(){
+    draw(context){
         // TODO
     }
 }

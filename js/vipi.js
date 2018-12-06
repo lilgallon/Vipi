@@ -4,14 +4,14 @@ $(document).ready(function() {
 
 function execute(){
 
-    var header_height_str = $("#header").css("height");
-    var header_width_str = $("#header").css("width");
-    $("#canvas").css("height", header_height_str);
-    $("#canvas").css("width", header_width_str);
+    var header_height_str = $("#game-container").css("height");
+    var header_width_str = $("#game-container").css("width");
+    $("#game").css("height", header_height_str);
+    $("#game").css("width", header_width_str);
 
     var header_height = header_height_str.replace("px", "");
     var header_width = header_width_str.replace("px", "");
-    var canvas=document.getElementById("canvas");
+    var canvas = document.getElementById("game");
     canvas.height = header_height;
     canvas.width = header_width;
 
@@ -22,9 +22,13 @@ function execute(){
     var entities = [];
     // TODO: init all the stuff
 
-    requestAnimationFrame(update);
-}
+    function update(){
+        context.clearRect(0, 0, width, height)
+       
+        for(entity in entities){
+            entity.draw(context);
+        }
+    }
 
-function update(){
-    
+    requestAnimationFrame(update);
 }

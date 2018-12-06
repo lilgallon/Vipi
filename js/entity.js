@@ -3,5 +3,5 @@ class Entity{
         this.hitbox = new Hitbox(x, y, w, h);
     }
 
-    draw(){}
+    draw(context){}
 }
