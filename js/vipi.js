@@ -20,12 +20,15 @@ function execute(){
     var height = canvas.height;
 
     var entities = [];
+    entities.push(new Owl(5, 5, 50, 60, 5, 6));
+    entities.push(new Food(15, 50, 20, 20, 1));
+    entities.push(new Predator(50, 30, 10, 10, 1));
     // TODO: init all the stuff
 
     function update(){
         context.clearRect(0, 0, width, height)
        
-        for(entity in entities){
+        for(var entity of entities){
             entity.draw(context);
         }
     }

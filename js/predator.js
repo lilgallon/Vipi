@@ -14,6 +14,9 @@ class Predator extends Entity{
     }
 
     draw(context){
-        // TODO
+        context.beginPath();
+        context.rect(this.hitbox.x, this.hitbox.y, this.hitbox.w, this.hitbox.h);
+        context.fillStyle = "red";
+        context.fill();
     }
 }
