@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 function execute(){
 
+    // SET UP EVERYTHING
     var header_height_str = $("#game-container").css("height");
     var header_width_str = $("#game-container").css("width");
     $("#game").css("height", header_height_str);
@@ -19,6 +20,7 @@ function execute(){
     var width = canvas.width;
     var height = canvas.height;
 
+    // Now that everything is set up, we can do the game-related stuff
     var owl = new Owl(5, 5, 50, 60, 2, 6);
     var entities = [];
     entities.push(owl);
