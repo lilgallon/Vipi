@@ -28,7 +28,7 @@ function execute(){
     game_running = true;
 
     // Entities ->
-    var owl = new Owl(5, 5, 76, 97);
+    var owl = new Owl(5, height/2 - 50, 76, 97);
     var entities = [];
 
     // Events ->
