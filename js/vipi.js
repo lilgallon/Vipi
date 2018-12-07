@@ -23,11 +23,12 @@ function execute(){
     // Now that everything is set up, we can do the game-related stuff
     
     // Variables
+    score = 0;
     const SPEED = 3;
     game_running = true;
 
     // Entities ->
-    var owl = new Owl(5, 5, 76, 97);
+    var owl = new Owl(5, height/2 - 50, 76, 97);
     var entities = [];
 
     // Events ->
@@ -35,12 +36,43 @@ function execute(){
 
     function generateEntities(){
         if(random(0, 5) == 1)
-            entities.push(new Food(width - 50, random(0, height - 50), 20, 20, 1));
+            entities.push(new Food(width - 50, random(0, height - 50), 67, 46, 1));
         if(random(0, 5) == 1)
-            entities.push(new Predator(width - 50, random(0, height - 50), 10, 10, 1));
+            entities.push(new Predator(width - 50, random(0, height - 50), 130, 95, 1));
         if(random(0, 8) == 1)
             owl.updateEnergy(-1);
     }
+
+    var left = false;
+    var right = false;
+    var up = false;
+    var down = false;
+
+    window.addEventListener("keyup", function (event) {
+        if (event.defaultPrevented) {
+            return; // Do nothing if the event was already processed
+          }
+        
+          switch (event.key) {
+            case "ArrowDown":
+              down = false;
+              break;
+              case "ArrowUp":
+              up = false;
+              break;
+            case "ArrowLeft":
+             left = false;
+              break;
+            case "ArrowRight":
+              right = false;
+              break;
+            default:
+              return;
+          }
+        
+          // Cancel the default action to avoid it being handled twice
+          event.preventDefault();
+    }, true);
 
     window.addEventListener("keydown", function (event) {
         if (event.defaultPrevented) {
@@ -49,16 +81,16 @@ function execute(){
       
         switch (event.key) {
           case "ArrowDown":
-            owl.hitbox.move(0, owl.energy * 2);
+            down = true;
             break;
         case "ArrowUp":
-            owl.hitbox.move(0, - owl.energy * 2);
+            up = true;
             break;
           case "ArrowLeft":
-            owl.hitbox.move(- owl.energy * 2, 0)
+           left = true;
             break;
           case "ArrowRight":
-            owl.hitbox.move(owl.energy * 2, 0)
+            right = true;
             break;
           default:
             return;
@@ -73,7 +105,31 @@ function execute(){
     function update(){
         context.clearRect(0, 0, width, height)
 
+        context.font = "25px Arial";
+        context.fillText("Score: " + score, width / 3 + 100, 30);
+
         // UPDATE/MOVEMENT SECTION
+
+        if(left){
+            owl.hitbox.move(- owl.energy * 2, 0);
+            score += owl.energy * 2;
+            if(owl.hitbox.x < 0) owl.hitbox.x = 0;
+        }
+        if(right){
+            owl.hitbox.move(owl.energy * 2, 0);
+            score += owl.energy * 2;
+            if(owl.hitbox.x + owl.hitbox.w > width) owl.hitbox.x = width - owl.hitbox.w;
+        }
+        if(up){
+            owl.hitbox.move(0, - owl.energy * 2);
+            score += owl.energy * 2;
+            if(owl.hitbox.y < 0) owl.hitbox.y = 0;
+        }
+        if(down){
+            owl.hitbox.move(0, owl.energy * 2);
+            score += owl.energy * 2;
+            if(owl.hitbox.y + owl.hitbox.h > (height +20)) owl.hitbox.y = (height +20) - owl.hitbox.h;
+        }
 
         for(var i = 0; i < entities.length; i ++){
             entities[i].hitbox.move(-SPEED, 0);
