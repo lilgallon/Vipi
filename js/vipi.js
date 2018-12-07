@@ -36,9 +36,9 @@ function execute(){
 
     function generateEntities(){
         if(random(0, 5) == 1)
-            entities.push(new Food(width - 50, random(0, height - 50), 20, 20, 1));
+            entities.push(new Food(width - 50, random(0, height - 50), 67, 46, 1));
         if(random(0, 5) == 1)
-            entities.push(new Predator(width - 50, random(0, height - 50), 10, 10, 1));
+            entities.push(new Predator(width - 50, random(0, height - 50), 130, 95, 1));
         if(random(0, 8) == 1)
             owl.updateEnergy(-1);
     }
@@ -113,18 +113,22 @@ function execute(){
         if(left){
             owl.hitbox.move(- owl.energy * 2, 0);
             score += owl.energy * 2;
+            if(owl.hitbox.x < 0) owl.hitbox.x = 0;
         }
         if(right){
             owl.hitbox.move(owl.energy * 2, 0);
             score += owl.energy * 2;
+            if(owl.hitbox.x + owl.hitbox.w > width) owl.hitbox.x = width - owl.hitbox.w;
         }
         if(up){
             owl.hitbox.move(0, - owl.energy * 2);
             score += owl.energy * 2;
+            if(owl.hitbox.y < 0) owl.hitbox.y = 0;
         }
         if(down){
             owl.hitbox.move(0, owl.energy * 2);
             score += owl.energy * 2;
+            if(owl.hitbox.y + owl.hitbox.h > (height +20)) owl.hitbox.y = (height +20) - owl.hitbox.h;
         }
 
         for(var i = 0; i < entities.length; i ++){
