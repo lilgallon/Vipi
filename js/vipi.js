@@ -21,19 +21,49 @@ function execute(){
     var height = canvas.height;
 
     // Now that everything is set up, we can do the game-related stuff
-    var owl = new Owl(5, 5, 50, 60, 2, 6);
+    
+    // Variables
+    const SPEED = 3;
+    game_running = true;
+
+    // Entities ->
+    var owl = new Owl(5, 5, 50, 60);
     var entities = [];
-    entities.push(owl);
-    entities.push(new Food(15, 50, 20, 20, 1));
-    entities.push(new Predator(50, 30, 10, 10, 1));
+
+    // Events ->
+    var timer = setInterval(generateEntities, 1000); // ms // clearInterval(timer) to stop timer
+
+    function generateEntities(){
+        if(random(0, 2) == 1)
+            entities.push(new Food(width - 50, random(0, height - 50), 20, 20, 1));
+        if(random(0, 2) == 1)
+            entities.push(new Predator(width - 50, random(0, height - 50), 10, 10, 1));
+    }
 
     function update(){
         context.clearRect(0, 0, width, height)
+
+        // MOVEMENT SECTION
+
+        for(var i = 0; i < entities.length; i ++){
+            entities[i].hitbox.move(-SPEED, 0);
+            if(entities[i].hitbox.x + entities[i].hitbox.w < 0)
+                entities.splice(i, 1)
+        }
+
+        // UPDATES
+
+        if(owl.health == 0)
+            game_running = false;
+
+
+        // DRAWING SECTION
        
         // Entities
         for(var entity of entities){
             entity.draw(context);
         }
+        owl.draw(context);
 
         // HUD
         var energy_hud = new Image();
@@ -45,7 +75,14 @@ function execute(){
         health_hud.src = "pictures/health-" + owl.health + ".png";
         console.log(health_hud.src);
         context.drawImage(health_hud, 100, 0);
+
+        if(game_running)
+            requestAnimationFrame(update);
     }
 
-    requestAnimationFrame(update);
+    update();
+}
+
+function random(min, max){
+    return Math.floor(Math.random() * max + min);
 }

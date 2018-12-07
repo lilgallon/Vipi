@@ -12,8 +12,8 @@ class Owl extends Entity{
      */
     constructor(x, y, w, h){
         super(x, y, w, h);
-        this.health = MAX_ENERGY;
-        this.energy = MAX_HEALTH;
+        this.health = MAX_HEALTH;
+        this.energy = MAX_ENERGY;
     }
 
     /**
