@@ -4,20 +4,22 @@ MAX_ENERGY = 6;
 class Owl extends Entity{
 
     /**
-     * 
+     * It creates an owl
      * @param {int} x position
      * @param {int} y position 
      * @param {int} w width
      * @param {int} h height 
-     * @param {int} health from 0 to 2
-     * @param {int} energy from 0 to 6
      */
-    constructor(x, y, w, h, health = this.MAX_HEALTH, energy = this.MAX_ENERGY){
+    constructor(x, y, w, h){
         super(x, y, w, h);
-        this.health = health;
-        this.energy = energy;
+        this.health = MAX_ENERGY;
+        this.energy = MAX_HEALTH;
     }
 
+    /**
+     * It updates the owl energy
+     * @param {int} increment
+     */
     updateEnergy(increment){
         this.energy += this.energy;
         if(this.energy > this.MAX_ENERGY){
@@ -29,7 +31,11 @@ class Owl extends Entity{
         }
     }
     
-    updateHealth(decrement){
+    /**
+     * it updates the owl health
+     * @param {int} increment 
+     */
+    updateHealth(increment){
         this.health -= this.health;
         if(this.health > this.MAX_HEALTH){
             console.warn("Health has been set to " + this.health + " whereas the max is set at " + this.MAX_HEALTH + ".");
@@ -40,14 +46,26 @@ class Owl extends Entity{
         }
     }
 
+    /**
+     * The owl eats the food !
+     * @param {Food} food 
+     */
     eat(food){
         this.updateEnergy(food.energy);
     }
 
+    /**
+     * The owl is attacked by a predator !
+     * @param {Predator} predator 
+     */
     damage(predator){
         this.updateHealth(predator.damages);
     }
 
+    /**
+     * It draws the owl
+     * @param {context} context 
+     */
     draw(context){
         context.beginPath();
         context.rect(this.hitbox.x, this.hitbox.y, this.hitbox.w, this.hitbox.h);

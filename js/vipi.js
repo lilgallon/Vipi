@@ -43,7 +43,6 @@ function execute(){
         health_hud.src = "pictures/health-" + owl.health + ".png";
         console.log(health_hud.src);
         context.drawImage(health_hud, 100, 0);
-
     }
 
     requestAnimationFrame(update);

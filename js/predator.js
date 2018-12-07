@@ -1,7 +1,7 @@
 class Predator extends Entity{
 
     /**
-     * 
+     * It creates a predator
      * @param {int} x position
      * @param {int} y position 
      * @param {int} w width
@@ -13,6 +13,10 @@ class Predator extends Entity{
         this.damages = damages;
     }
 
+    /**
+     * It draws a predator
+     * @param {context} context 
+     */
     draw(context){
         context.beginPath();
         context.rect(this.hitbox.x, this.hitbox.y, this.hitbox.w, this.hitbox.h);

@@ -1,7 +1,7 @@
 class Hitbox{
 
     /**
-     * 
+     * It creates an hitbox
      * @param {int} x position
      * @param {int} y position 
      * @param {int} w width
@@ -15,7 +15,7 @@ class Hitbox{
     }
 
     /**
-     * 
+     * It moves the hitbox
      * @param {int} dx 
      * @param {int} dy 
      */
@@ -24,6 +24,10 @@ class Hitbox{
         this.y += dy;
     }
 
+    /**
+     * It checks if the current hitbox overlaps the given hitbox
+     * @param {Hitbox} hitbox 
+     */
     isOver(hitbox){
         return (this.x < hitbox.x+hitbox.w && this.x+this.w > hitbox.x &&
             this.y < hitbox.y+hitbox.h && this.y+this.h > hitbox.y ) ;
