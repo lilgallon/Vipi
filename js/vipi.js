@@ -31,14 +31,48 @@ function execute(){
     var entities = [];
 
     // Events ->
-    var timer = setInterval(generateEntities, 1000); // ms // clearInterval(timer) to stop timer
+    var timer = setInterval(generateEntities, 250); // ms
 
     function generateEntities(){
-        if(random(0, 2) == 1)
+        if(random(0, 5) == 1)
             entities.push(new Food(width - 50, random(0, height - 50), 20, 20, 1));
-        if(random(0, 2) == 1)
+        if(random(0, 5) == 1)
             entities.push(new Predator(width - 50, random(0, height - 50), 10, 10, 1));
+        if(random(0, 8) == 1)
+            owl.updateEnergy(-1);
     }
+
+    window.addEventListener("keydown", function (event) {
+        if (event.defaultPrevented) {
+          return; // Do nothing if the event was already processed
+        }
+      
+        switch (event.key) {
+          case "ArrowDown":
+            // code for "down arrow" key press.
+            owl.hitbox.move(0, owl.energy * 2);
+            break;
+        case "ArrowUp":
+            owl.hitbox.move(0, - owl.energy * 2);
+            // code for "up arrow" key press.
+            break;
+          case "ArrowLeft":
+            owl.hitbox.move(- owl.energy * 2, 0)
+            // code for "left arrow" key press.
+            break;
+          case "ArrowRight":
+            owl.hitbox.move(owl.energy * 2, 0)
+            // code for "right arrow" key press.
+            break;
+          default:
+            return; // Quit when this doesn't handle the key event.
+        }
+      
+        // Cancel the default action to avoid it being handled twice
+        event.preventDefault();
+      }, true);
+      // the last option dispatches the event to the listener first,
+      // then dispatches event to window
 
     function update(){
         context.clearRect(0, 0, width, height)
@@ -76,8 +110,12 @@ function execute(){
         health_hud.src = "pictures/health-" + owl.health + ".png";
         context.drawImage(health_hud, 100, 0);
 
-        if(game_running)
+        if(game_running){
             requestAnimationFrame(update);
+        }else{
+            clearInterval(timer);
+            context.drawImage(health_hud, 100, 0);
+        }
     }
 
     update();
