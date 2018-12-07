@@ -24,9 +24,9 @@ class Owl extends Entity{
      */
     updateEnergy(increment){
         this.energy += increment;
-        if(this.energy > this.MAX_ENERGY){
-            console.warn("Energy has been set to " + this.energy + " whereas the max is set at " + this.MAX_ENERGY + ".");
-            this.energy = this.MAX_ENERGY;
+        if(this.energy > MAX_ENERGY){
+            console.warn("Energy has been set to " + this.energy + " whereas the max is set at " + MAX_ENERGY + ".");
+            this.energy = MAX_ENERGY;
         }else if(this.energy < 0){
             console.warn("Energy has been set to " + this.energy + " whereas the min is set at 0.");
             this.energy = 0;
@@ -39,9 +39,9 @@ class Owl extends Entity{
      */
     updateHealth(increment){
         this.health += increment;
-        if(this.health > this.MAX_HEALTH){
-            console.warn("Health has been set to " + this.health + " whereas the max is set at " + this.MAX_HEALTH + ".");
-            this.health = this.MAX_HEALTH;
+        if(this.health > MAX_HEALTH){
+            console.warn("Health has been set to " + this.health + " whereas the max is set at " + MAX_HEALTH + ".");
+            this.health = MAX_HEALTH;
         }else if(this.health < 0){
             console.warn("Health has been set to " + this.health + " whereas the min is set at 0.");
             this.health = 0;
