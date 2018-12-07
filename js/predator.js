@@ -29,9 +29,8 @@ class Predator extends Entity{
      * @param {context} context 
      */
     draw(context){
-        context.beginPath();
-        context.rect(this.hitbox.x, this.hitbox.y, this.hitbox.w, this.hitbox.h);
-        context.fillStyle = "red";
-        context.fill();
+        var sprite = new Image();
+        sprite.src = "pictures/angry.png";
+        context.drawImage(sprite, this.hitbox.x, this.hitbox.y);
     }
 }

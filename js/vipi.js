@@ -49,23 +49,19 @@ function execute(){
       
         switch (event.key) {
           case "ArrowDown":
-            // code for "down arrow" key press.
             owl.hitbox.move(0, owl.energy * 2);
             break;
         case "ArrowUp":
             owl.hitbox.move(0, - owl.energy * 2);
-            // code for "up arrow" key press.
             break;
           case "ArrowLeft":
             owl.hitbox.move(- owl.energy * 2, 0)
-            // code for "left arrow" key press.
             break;
           case "ArrowRight":
             owl.hitbox.move(owl.energy * 2, 0)
-            // code for "right arrow" key press.
             break;
           default:
-            return; // Quit when this doesn't handle the key event.
+            return;
         }
       
         // Cancel the default action to avoid it being handled twice

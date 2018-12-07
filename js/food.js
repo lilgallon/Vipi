@@ -28,9 +28,8 @@ class Food extends Entity{
      * @param {context} context 
      */
     draw(context){
-        context.beginPath();
-        context.rect(this.hitbox.x, this.hitbox.y, this.hitbox.w, this.hitbox.h);
-        context.fillStyle = "green";
-        context.fill();
+        var sprite = new Image();
+        sprite.src = "pictures/bird.png";
+        context.drawImage(sprite, this.hitbox.x, this.hitbox.y);
     }
 }
