@@ -1,0 +1,7 @@
+Le principe est simple, nous avons créé un mini jeu accompagné d'une explication pour comprendre le jeu peu importe l'âge du gamer ou de la gameuse. Les explications sont simples, le texte a une bonne lisibilité et les boutons pour passer les étapes sont systématiquement indiqués.
+
+Il faut donc ouvrir le dossier ci-joint et double cliquer sur le fichier CYBERMAMIE.html
+
+Le tutoriel commence, pendant cette étape il vous suffit seulement de lire les instructions et de comprendre le jeu.
+
+Une fois toutes les étapes du tutoriel passées, le jeu commencera !
