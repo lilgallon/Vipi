@@ -27,7 +27,7 @@ function execute(){
     game_running = true;
 
     // Entities ->
-    var owl = new Owl(5, 5, 50, 60);
+    var owl = new Owl(5, 5, 76, 97);
     var entities = [];
 
     // Events ->
@@ -43,15 +43,17 @@ function execute(){
     function update(){
         context.clearRect(0, 0, width, height)
 
-        // MOVEMENT SECTION
+        // UPDATE/MOVEMENT SECTION
 
         for(var i = 0; i < entities.length; i ++){
             entities[i].hitbox.move(-SPEED, 0);
             if(entities[i].hitbox.x + entities[i].hitbox.w < 0)
                 entities.splice(i, 1)
+            if(owl.hitbox.isOver(entities[i].hitbox)){
+                entities[i].interactWith(owl);
+                entities.splice(i, 1)
+            }
         }
-
-        // UPDATES
 
         if(owl.health == 0)
             game_running = false;
@@ -68,12 +70,10 @@ function execute(){
         // HUD
         var energy_hud = new Image();
         energy_hud.src = "pictures/energy-" + owl.energy + ".png";
-        console.log(energy_hud.src);
         context.drawImage(energy_hud, 10, 10);
 
         var health_hud = new Image();
         health_hud.src = "pictures/health-" + owl.health + ".png";
-        console.log(health_hud.src);
         context.drawImage(health_hud, 100, 0);
 
         if(game_running)

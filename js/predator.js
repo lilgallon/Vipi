@@ -14,6 +14,17 @@ class Predator extends Entity{
     }
 
     /**
+     * It attacks the owl
+     * @param {Owl} owl 
+     */
+    interactWith(owl){
+        console.log("He has " + owl.health + " health.");
+        console.log("Owl attacked ! -" + this.damages + " health.");
+        owl.updateHealth(-this.damages);
+        console.log("He is now at " + owl.health + " health.");
+    }
+
+    /**
      * It draws a predator
      * @param {context} context 
      */

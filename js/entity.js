@@ -11,7 +11,13 @@ class Entity{
     }
 
     /**
-     * Need to be implemented in children
+     * Needs to be implemented in children
+     * @param {Owl} owl 
+     */
+    interactWith(owl){}
+
+    /**
+     * Needs to be implemented in children
      * @param {context} context 
      */
     draw(context){}

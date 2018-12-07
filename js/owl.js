@@ -1,5 +1,6 @@
 MAX_HEALTH = 2;
 MAX_ENERGY = 6;
+MAX_SPRITE_ID_OWL = 2;
 
 class Owl extends Entity{
 
@@ -12,6 +13,7 @@ class Owl extends Entity{
      */
     constructor(x, y, w, h){
         super(x, y, w, h);
+        this.sprite_id = 0;
         this.health = MAX_HEALTH;
         this.energy = MAX_ENERGY;
     }
@@ -21,7 +23,7 @@ class Owl extends Entity{
      * @param {int} increment
      */
     updateEnergy(increment){
-        this.energy += this.energy;
+        this.energy += increment;
         if(this.energy > this.MAX_ENERGY){
             console.warn("Energy has been set to " + this.energy + " whereas the max is set at " + this.MAX_ENERGY + ".");
             this.energy = this.MAX_ENERGY;
@@ -36,7 +38,7 @@ class Owl extends Entity{
      * @param {int} increment 
      */
     updateHealth(increment){
-        this.health -= this.health;
+        this.health += increment;
         if(this.health > this.MAX_HEALTH){
             console.warn("Health has been set to " + this.health + " whereas the max is set at " + this.MAX_HEALTH + ".");
             this.health = this.MAX_HEALTH;
@@ -47,29 +49,13 @@ class Owl extends Entity{
     }
 
     /**
-     * The owl eats the food !
-     * @param {Food} food 
-     */
-    eat(food){
-        this.updateEnergy(food.energy);
-    }
-
-    /**
-     * The owl is attacked by a predator !
-     * @param {Predator} predator 
-     */
-    damage(predator){
-        this.updateHealth(predator.damages);
-    }
-
-    /**
      * It draws the owl
      * @param {context} context 
      */
     draw(context){
-        context.beginPath();
-        context.rect(this.hitbox.x, this.hitbox.y, this.hitbox.w, this.hitbox.h);
-        context.fillStyle = "pink";
-        context.fill();
+        var sprite = new Image();
+        sprite.src = "pictures/owl-" + this.sprite_id + ".png";
+        context.drawImage(sprite, this.hitbox.x, this.hitbox.y);
+        this.sprite_id = (this.sprite_id + 1) % (MAX_SPRITE_ID_OWL + 1);
     }
 }

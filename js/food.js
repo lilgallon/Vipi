@@ -14,6 +14,16 @@ class Food extends Entity{
     }
 
     /**
+     * It gets eaten by an owl
+     * @param {Owl} owl 
+     */
+    interactWith(owl){
+        console.log("Owl has eaten some food ! +" + this.energy + " energy.");
+        owl.updateEnergy(this.energy);
+        console.log("Owl is now at " + owl.energy + " energy.");
+    }
+
+    /**
      * It draws the food
      * @param {context} context 
      */
